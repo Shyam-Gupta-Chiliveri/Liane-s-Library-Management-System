@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: mysql:8.0
+    container_name: lianes_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: liane123
+      MYSQL_DATABASE: lianes_library
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./lianes_library.sql:/docker-entrypoint-initdb.d/lianes_library.sql
+
+  app:
+    build: .
+    container_name: lianes_app
+    restart: always
+    ports:
+      - "8501:8501"
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PASSWORD: liane123
+      LIBRARY_USERNAME: liane
+      LIBRARY_PASSWORD: liane123
+    env_file: []
+    depends_on:
+      - db
+    volumes:
+      - ./src:/app
+
+volumes:
+  mysql_data:
