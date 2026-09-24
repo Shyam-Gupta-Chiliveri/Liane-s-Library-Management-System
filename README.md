@@ -144,13 +144,22 @@ lianes-library-app/
 
 ---
 
+## 🌐 Deployment
+
+This app is containerised with Docker and runs locally.
+
+To run it yourself:
+1. Clone the repo
+2. Add your `.env` file with your MySQL password
+3. Add your `lianes_library.sql` database export
+4. Run `docker compose up --build`
+5. Open `http://localhost:8501` in your browser
+
+---
+
 ## 👨‍💻 Built By
 
 Shyam Sunder Chiliveri
 WBS Coding School — Data Science & AI Programme
 
----
 
-## 📄 License
-
-This project is for educational purposes.
